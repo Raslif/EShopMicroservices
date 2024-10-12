@@ -1,8 +1,12 @@
-﻿namespace Catalog.API.Models
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+
+namespace Catalog.API.Models.DocumentModels
 {
-    public class Product
+    public class ProductDocument
     {
-        public Guid Id { get; set; }
+        [BsonId]
+        public ObjectId Id {  get; set; }
         public string Name { get; set; } = default!;
         public List<string> Category { get; set; } = [];
         public string Description { get; set; } = default!;
