@@ -9,7 +9,8 @@ namespace Catalog.API.Products.CreateProduct
                                         : ICommand<CreateProductResult>;
     public record CreateProductResult(string Id);
 
-    public class CreateProductCommandHandler(IProductDocumentRepo productDocumentRepo) : ICommandHandler<CreateProductCommand, CreateProductResult>
+    public class CreateProductCommandHandler(IProductDocumentRepo productDocumentRepo) 
+        : ICommandHandler<CreateProductCommand, CreateProductResult>
     {
         public async Task<CreateProductResult> Handle(CreateProductCommand command, CancellationToken cancellationToken)
         {
