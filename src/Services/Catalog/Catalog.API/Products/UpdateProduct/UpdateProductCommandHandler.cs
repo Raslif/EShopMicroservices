@@ -14,7 +14,8 @@ namespace Catalog.API.Products.UpdateProduct
         public async Task<UpdateProductResult> Handle(UpdateProductCommand command, CancellationToken cancellationToken)
         {
             ObjectId docId = new(command.Id);
-            var productDocument = await productDocumentRepo.GetProductById(docId) ?? throw new ProductNotFoundException();
+            var productDocument = await productDocumentRepo.GetProductById(docId, cancellationToken) 
+                ?? throw new ProductNotFoundException($"ProductId: {docId} not found");
 
             productDocument.Name = command.Name;
             productDocument.Category = command.Category;
@@ -22,7 +23,7 @@ namespace Catalog.API.Products.UpdateProduct
             productDocument.ImageFile = command.ImageFile;
             productDocument.Price = command.Price;
 
-            var result = await productDocumentRepo.UpdateProductById(docId, productDocument);
+            var result = await productDocumentRepo.UpdateProductById(docId, productDocument, cancellationToken);
 
             return new(result.IsAcknowledged && result.ModifiedCount > 0);
         }

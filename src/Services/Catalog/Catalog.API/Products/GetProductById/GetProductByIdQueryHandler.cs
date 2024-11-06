@@ -16,7 +16,8 @@ namespace Catalog.API.Products.GetProductById
     {
         public async Task<GetProductByIdResult> Handle(GetProductByIdQuery request, CancellationToken cancellationToken)
         {
-            var productDocument = await productDocumentRepo.GetProductById(new ObjectId(request.Id)) ?? throw new ProductNotFoundException();
+            var productDocument = await productDocumentRepo.GetProductById(new ObjectId(request.Id), cancellationToken) 
+                ?? throw new ProductNotFoundException($"ProductId: {request.Id} not found");
             
             TypeAdapterConfig<ProductDocument, Product>.NewConfig().Map(dest => dest.Id, src => src.Id.ToString());
 

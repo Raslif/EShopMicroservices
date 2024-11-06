@@ -12,11 +12,11 @@ namespace Catalog.API.Products.UpdateProduct
         public void AddRoutes(IEndpointRouteBuilder app)
         {
             app.MapPut("/product/update",
-            async (UpdateProductRequest request, ISender sender) =>
+            async (UpdateProductRequest request, ISender sender, CancellationToken cancellationToken) =>
             {
                 var command = request.Adapt<UpdateProductCommand>();
 
-                var result = await sender.Send(command);
+                var result = await sender.Send(command, cancellationToken);
 
                 var response = result.Adapt<UpdateProductResponse>();
 

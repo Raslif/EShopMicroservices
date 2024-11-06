@@ -14,10 +14,10 @@ namespace Catalog.API.Products.DeleteProduct
         public async Task<DeleteProductResult> Handle(DeleteProductCommand command, CancellationToken cancellationToken)
         {
             ObjectId id = new(command.ProductId);
-            if (!await productDocumentRepo.CheckProductExists(id))
-                throw new ProductNotFoundException();
+            if (!await productDocumentRepo.CheckProductExists(id, cancellationToken))
+                throw new ProductNotFoundException($"ProductId: {id} not found");
 
-            var result = await productDocumentRepo.DeleteProductById(id);
+            var result = await productDocumentRepo.DeleteProductById(id, cancellationToken);
 
             return new(result.IsAcknowledged && result.DeletedCount > 0);
         }

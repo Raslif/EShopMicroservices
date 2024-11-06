@@ -14,7 +14,7 @@ namespace Catalog.API.Products.GetProducts
     {
         public async Task<GetProductsResult> Handle(GetProductsQuery request, CancellationToken cancellationToken)
         {
-            var listOfProductDoc = await productDocumentRepo.GetAllProducts();
+            var listOfProductDoc = await productDocumentRepo.GetAllProducts(cancellationToken);
 
             if (!listOfProductDoc.Any())
                 return new(new List<Product>());

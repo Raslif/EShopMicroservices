@@ -2,6 +2,7 @@
 using Catalog.API.Models;
 using Mapster;
 using MediatR;
+using System.Threading;
 
 namespace Catalog.API.Products.GetProductById
 {
@@ -10,9 +11,9 @@ namespace Catalog.API.Products.GetProductById
     {
         public void AddRoutes(IEndpointRouteBuilder app)
         {
-            app.MapGet("/product/{productId}", async (string productId, ISender sender) =>
+            app.MapGet("/product/{productId}", async (string productId, ISender sender, CancellationToken cancellationToken) =>
             {
-                var result = await sender.Send(new GetProductByIdQuery(productId));
+                var result = await sender.Send(new GetProductByIdQuery(productId), cancellationToken);
 
                 var response = result.Adapt<GetProductByIdResponse>();
 
