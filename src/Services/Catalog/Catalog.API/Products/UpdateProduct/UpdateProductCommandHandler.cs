@@ -1,6 +1,6 @@
 ﻿using BuildingBlocks.CQRS;
+using BuildingBlocks.Exceptions;
 using Catalog.API.DataAccess.Abstracts;
-using Catalog.API.Exceptions;
 using MongoDB.Bson;
 
 namespace Catalog.API.Products.UpdateProduct
@@ -15,7 +15,7 @@ namespace Catalog.API.Products.UpdateProduct
         {
             ObjectId docId = new(command.Id);
             var productDocument = await productDocumentRepo.GetProductById(docId, cancellationToken) 
-                ?? throw new ProductNotFoundException($"ProductId: {docId} not found");
+                ?? throw new NotFoundException($"ProductId: {docId} not found");
 
             productDocument.Name = command.Name;
             productDocument.Category = command.Category;

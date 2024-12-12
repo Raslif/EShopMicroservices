@@ -1,6 +1,6 @@
 ﻿using BuildingBlocks.CQRS;
+using BuildingBlocks.Exceptions;
 using Catalog.API.DataAccess.Abstracts;
-using Catalog.API.Exceptions;
 using Catalog.API.Models;
 using Catalog.API.Models.DocumentModels;
 using Mapster;
@@ -17,7 +17,7 @@ namespace Catalog.API.Products.GetProductById
         public async Task<GetProductByIdResult> Handle(GetProductByIdQuery request, CancellationToken cancellationToken)
         {
             var productDocument = await productDocumentRepo.GetProductById(new ObjectId(request.Id), cancellationToken) 
-                ?? throw new ProductNotFoundException($"ProductId: {request.Id} not found");
+                ?? throw new NotFoundException($"ProductId: {request.Id} not found");
             
             TypeAdapterConfig<ProductDocument, Product>.NewConfig().Map(dest => dest.Id, src => src.Id.ToString());
 

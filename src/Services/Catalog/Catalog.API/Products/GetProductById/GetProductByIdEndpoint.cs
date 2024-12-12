@@ -2,7 +2,6 @@
 using Catalog.API.Models;
 using Mapster;
 using MediatR;
-using System.Threading;
 
 namespace Catalog.API.Products.GetProductById
 {
