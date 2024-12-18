@@ -22,10 +22,9 @@ builder.Services.AddValidatorsFromAssembly(typeof(Program).Assembly);
 builder.Services.AddExceptionHandler<CustomExceptionHandler>();
 
 builder.Services.AddHealthChecks()
-                .AddMongoDb(
-                    mongodbConnectionString: builder.Configuration.GetValue<string>("MongoDB:ConnectionString")!,
-                    mongoDatabaseName: builder.Configuration.GetValue<string>("MongoDB:EShop")!,
-                    name: "MongoDB");
+                .AddMongoDb(mongodbConnectionString: builder.Configuration.GetValue<string>("MongoDB:ConnectionString")!,
+                            mongoDatabaseName: builder.Configuration.GetValue<string>("MongoDB:EShop")!,
+                            name: "MongoDB");
 
 var app = builder.Build();
 
