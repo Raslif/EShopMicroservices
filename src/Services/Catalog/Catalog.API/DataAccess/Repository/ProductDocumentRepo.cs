@@ -2,7 +2,6 @@
 using Catalog.API.Models.DocumentModels;
 using MongoDB.Bson;
 using MongoDB.Driver;
-using System.Threading;
 
 namespace Catalog.API.DataAccess.Repository
 {
