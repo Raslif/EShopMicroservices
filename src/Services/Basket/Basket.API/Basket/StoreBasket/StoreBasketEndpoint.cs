@@ -2,6 +2,7 @@
 using Carter;
 using Mapster;
 using MediatR;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Basket.API.Basket.StoreBasket
 {
@@ -11,7 +12,7 @@ namespace Basket.API.Basket.StoreBasket
     {
         public void AddRoutes(IEndpointRouteBuilder app)
         {
-            app.MapPost("/basket/save", async (StoreBasketRequest saveCommand, ISender sender) =>
+            app.MapPost("/basket/save", async ([FromBody] StoreBasketRequest saveCommand, ISender sender) =>
             {
                 var command = saveCommand.Adapt<StoreBasketCommand>();
 
