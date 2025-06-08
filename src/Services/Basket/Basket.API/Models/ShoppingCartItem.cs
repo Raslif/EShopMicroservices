@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Basket.API.Models
 {
