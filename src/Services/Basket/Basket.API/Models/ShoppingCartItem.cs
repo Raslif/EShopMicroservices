@@ -17,7 +17,3 @@ namespace Basket.API.Models
         public string ProductName { get; set; }
     }
 }
-
-// Test commit on master branch
-// Test commit 2 on master branch
-// Test commit 2 on feature branch
