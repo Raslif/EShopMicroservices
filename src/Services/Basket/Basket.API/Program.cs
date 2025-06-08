@@ -28,3 +28,4 @@ app.Run();
 
 // Test commit on master branch
 // Test commit 1 on feature branch
+// Test commit 2 on feature branch
